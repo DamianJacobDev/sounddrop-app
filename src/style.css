@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.heroicon {
+    @apply w-6 h-6 
+}

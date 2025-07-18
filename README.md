@@ -22,6 +22,7 @@
 - **Pinia** – global state management
 - **Firebase (planned)** – auth & storage
 - **GSAP** – UI animations
+- **Heroicons** – SVG icons
 
 
 ## 🎯 Planned Features
