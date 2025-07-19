@@ -23,6 +23,7 @@
 - **Firebase (planned)** – auth & storage
 - **GSAP** – UI animations
 - **Heroicons** – SVG icons
+- **wavesurfer.js** - waveform of sound
 
 
 ## 🎯 Planned Features

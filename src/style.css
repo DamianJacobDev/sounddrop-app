@@ -5,3 +5,9 @@
 .heroicon {
     @apply w-6 h-6 
 }
+.globbalPadding {
+    @apply px-4
+}
+body {
+    @apply text-main
+}
