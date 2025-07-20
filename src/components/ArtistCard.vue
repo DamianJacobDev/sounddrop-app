@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-64 flex-col items-center rounded-xl bg-gray-100 p-4 shadow-md dark:bg-gray-900">
+  <div class="flex flex-col items-center rounded-xl p-4 shadow-md dark:bg-gray-900">
     <div class="mb-3 h-20 w-20 rounded-full bg-primary"></div>
     <h3 class="text-xl font-semibold dark:text-white">
       {{ name }}

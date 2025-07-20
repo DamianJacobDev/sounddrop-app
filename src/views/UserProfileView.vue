@@ -46,7 +46,7 @@
     </div>
 
     <div v-else-if="activeTab === 'Obserwowani'" class="flex items-center gap-4">
-      <artist-card v-for="song in user.following" :key="song.id" :name="song.name" :title="song.bio"
+      <artist-card class="w-52" v-for="song in user.following" :key="song.id" :name="song.name" :title="song.bio"
       :views="song.views"/>
     </div>
   </div>

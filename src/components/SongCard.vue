@@ -1,46 +1,49 @@
 <template>
-  <div v-if="variant === 'compact'"
-       class="flex items-center justify-between px-4 py-4 rounded-xl border my-2 cursor-pointer">
-    <div class="flex items-center gap-2">
+  <div v-if="track" @click="goToDetails(track.id)">
+    <div v-if="variant === 'compact'"
+         class="flex items-center justify-between px-4 py-4 rounded-xl border my-2 cursor-pointer">
+      <div class="flex items-center gap-2">
             <span class="bg-primary w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
                 <PlayCircleIcon
                     class="heroicon opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer"/>
             </span>
-      <span>{{ title }}</span>
-      <span class="artist relative pl-4 text-sm">{{ artist }}</span>
-      <Waveform class="hidden" @duration="getTime" :key="props.link" :link="props.link"/>
-    </div>
-    <div class="flex items-center gap-4">
-      <span>{{ time }}</span>
-      <HeartIcon class="heroicon"/>
-      <ChatBubbleOvalLeftEllipsisIcon class="heroicon"/>
-      <EllipsisHorizontalIcon class="heroicon"/>
-    </div>
-  </div>
-
-  <div v-else class="px-4 py-4 rounded-xl border my-2 cursor-pointer flex gap-2">
-    <span class="bg-primary w-48 h-48 flex-shrink-0 rounded-sm"></span>
-    <div class="w-full">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <PlayCircleIcon class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
-        transition-all duration-300 text-gray-200 cursor-pointer"/>
-          <div>
-            <span class="block text-gray-400">{{ artist }}</span>
-            <span class="block font-bold">{{ title }}</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-2 flex-wrap max-w-xl">
-          <span v-for="(tag, index) in props.tags" class="bg-primary px-2 py-0.5 rounded-lg text-sm">#{{ tag }}</span>
-        </div>
-
+        <span>{{ track.title }}</span>
+        <span class="artist relative pl-4 text-sm">{{ track.artist }}</span>
+        <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link"/>
       </div>
-      <Waveform @duration="getTime" :key="props.link" :link="props.link"/>
-      <div class="flex items-center gap-4 justify-end pt-2">
+      <div class="flex items-center gap-4">
         <span>{{ time }}</span>
         <HeartIcon class="heroicon"/>
         <ChatBubbleOvalLeftEllipsisIcon class="heroicon"/>
         <EllipsisHorizontalIcon class="heroicon"/>
+      </div>
+    </div>
+
+    <div v-else class="px-4 py-4 rounded-xl border my-2 cursor-pointer flex gap-2">
+      <span class="bg-primary w-48 h-48 flex-shrink-0 rounded-sm"></span>
+      <div class="w-full">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <PlayCircleIcon class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
+        transition-all duration-300 text-gray-200 cursor-pointer"/>
+            <div>
+              <span class="block text-gray-400">{{ track.artist }}</span>
+              <span class="block font-bold">{{ track.title }}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap max-w-xl">
+            <span v-for="(tag, index) in track.tags" :key="index"
+                  class="bg-primary px-2 py-0.5 rounded-lg text-sm">#{{ tag }}</span>
+          </div>
+
+        </div>
+        <Waveform @duration="getTime" :key="track.id" :link="track.link"/>
+        <div class="flex items-center gap-4 justify-end pt-2">
+          <span>{{ time }}</span>
+          <HeartIcon class="heroicon"/>
+          <ChatBubbleOvalLeftEllipsisIcon class="heroicon"/>
+          <EllipsisHorizontalIcon class="heroicon"/>
+        </div>
       </div>
     </div>
   </div>
@@ -54,7 +57,25 @@ import {
   PlayCircleIcon
 } from '@heroicons/vue/24/outline';
 import Waveform from "./Waveform.vue";
-import {ref} from "vue";
+import {computed, ref} from "vue";
+import {useTrackStore} from "../stores/trackStore.js";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+
+const props = defineProps({
+  trackId: 'String',
+  variant: {
+    type: String,
+    default: 'compact',
+    validator: (val) => ['compact', 'full'].includes(val),
+  }
+})
+const TrackStore = useTrackStore();
+
+const track = computed(() =>
+    TrackStore.tracks.find(t => t.id === props.trackId)
+);
 
 const time = ref('');
 const getTime = (val) => {
@@ -63,17 +84,9 @@ const getTime = (val) => {
   time.value = `${mins}:${secs}`
 }
 
-const props = defineProps({
-  title: String,
-  artist: String,
-  link: String,
-  tags: Array,
-  variant: {
-    type: String,
-    default: 'compact',
-    validator: (val) => ['compact', 'full'].includes(val),
-  }
-})
+const goToDetails = (id) => {
+  router.push(`/track/${id}`);
+}
 
 </script>
 
