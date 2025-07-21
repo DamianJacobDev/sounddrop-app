@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 .heroicon {
-    @apply w-6 h-6 
+    @apply w-6 h-6;
+    &--small {
+        @apply w-4 h-4;
+    }
 }
 .globalPadding {
     @apply px-4

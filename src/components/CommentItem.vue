@@ -6,7 +6,6 @@
       <div class="flex-1">
         <div class="flex justify-between items-center">
           <span class="font-semibold text-sm">{{ comment.user }}</span>
-          <button class="text-xs text-red-600 hover:underline">Usuń</button>
         </div>
 
         <p class="text-sm mt-1">
@@ -16,20 +15,27 @@
         <div class="flex items-center gap-4 mt-2 text-xs text-secondary">
           <button>❤️ {{ comment.likes }}</button>
           <button>Odpowiedz</button>
+          <button @click="trackStore.removeComment(trackId, comment.id)" class="text-xs text-red-600 hover:underline">
+            <trash-icon class="heroicon--small"/>
+          </button>
         </div>
       </div>
     </div>
 
     <div v-if="comment.replies?.length" class="pl-12">
-      <CommentItem :comments="comment.replies" />
+      <CommentItem :comments="comment.replies" :track-id="trackId" />
     </div>
   </div>
 </template>
 
 <script setup>
+import {useTrackStore} from "../stores/trackStore.js";
+const trackStore = useTrackStore();
+import {TrashIcon} from "@heroicons/vue/24/outline/index.js";
 
 defineProps({
   comments: Array,
+  trackId: String,
 })
 
 
