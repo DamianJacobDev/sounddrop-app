@@ -1,8 +1,8 @@
 <template>
-    <div class="container mx-auto globbalPadding">
-      <app-header/>
-      <router-view/>
-    </div>
+  <div class="container mx-auto globalPadding">
+    <app-header />
+    <router-view />
+  </div>
 </template>
 
 <script setup>

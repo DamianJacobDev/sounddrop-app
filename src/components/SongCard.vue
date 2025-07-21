@@ -1,21 +1,23 @@
 <template>
   <div v-if="track" @click="goToDetails(track.id)">
     <div v-if="variant === 'compact'"
-         class="flex items-center justify-between px-4 py-4 rounded-xl border my-2 cursor-pointer">
+      class="flex items-center justify-between px-4 py-4 rounded-xl border my-2 cursor-pointer">
       <div class="flex items-center gap-2">
-            <span class="bg-primary w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
-                <PlayCircleIcon
-                    class="heroicon opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer"/>
-            </span>
+        <span class="bg-primary w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
+          <PlayCircleIcon
+            class="heroicon opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer" />
+        </span>
         <span>{{ track.title }}</span>
         <span class="artist relative pl-4 text-sm">{{ track.artist }}</span>
-        <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link"/>
+        <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link" />
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
         <span>{{ time }}</span>
-        <HeartIcon class="heroicon"/>
-        <ChatBubbleOvalLeftEllipsisIcon class="heroicon"/>
-        <EllipsisHorizontalIcon class="heroicon"/>
+        <HeartIcon class="heroicon" @click.stop="like()" />
+        <span>{{ track.likes }}</span>
+        <ChatBubbleOvalLeftEllipsisIcon class="heroicon" />
+        <span>{{ countAllComments(track.comments) }}</span>
+        <EllipsisHorizontalIcon class="heroicon" />
       </div>
     </div>
 
@@ -25,24 +27,26 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <PlayCircleIcon class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
-        transition-all duration-300 text-gray-200 cursor-pointer"/>
+        transition-all duration-300 text-gray-200 cursor-pointer" />
             <div>
               <span class="block text-gray-400">{{ track.artist }}</span>
               <span class="block font-bold">{{ track.title }}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 flex-wrap max-w-xl">
-            <span v-for="(tag, index) in track.tags" :key="index"
-                  class="bg-primary px-2 py-0.5 rounded-lg text-sm">#{{ tag }}</span>
+            <span v-for="(tag, index) in track.tags" :key="index" class="bg-primary px-2 py-0.5 rounded-lg text-sm">#{{
+              tag }}</span>
           </div>
 
         </div>
-        <Waveform @duration="getTime" :key="track.id" :link="track.link"/>
-        <div class="flex items-center gap-4 justify-end pt-2">
+        <Waveform @duration="getTime" :key="track.id" :link="track.link" />
+        <div class="flex items-center gap-2 justify-end pt-2">
           <span>{{ time }}</span>
-          <HeartIcon class="heroicon"/>
-          <ChatBubbleOvalLeftEllipsisIcon class="heroicon"/>
-          <EllipsisHorizontalIcon class="heroicon"/>
+          <HeartIcon class="heroicon" @click.stop="like()" />
+          <span>{{ track.likes }}</span>
+          <ChatBubbleOvalLeftEllipsisIcon class="heroicon" />
+          <span>{{ countAllComments(track.comments) }}</span>
+          <EllipsisHorizontalIcon class="heroicon" />
         </div>
       </div>
     </div>
@@ -57,9 +61,9 @@ import {
   PlayCircleIcon
 } from '@heroicons/vue/24/outline';
 import Waveform from "./Waveform.vue";
-import {computed, ref} from "vue";
-import {useTrackStore} from "../stores/trackStore.js";
-import {useRouter} from "vue-router";
+import { computed, ref } from "vue";
+import { useTrackStore } from "../stores/trackStore.js";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
@@ -74,7 +78,7 @@ const props = defineProps({
 const TrackStore = useTrackStore();
 
 const track = computed(() =>
-    TrackStore.tracks.find(t => t.id === props.trackId)
+  TrackStore.tracks.find(t => t.id === props.trackId)
 );
 
 const time = ref('');
@@ -88,6 +92,16 @@ const goToDetails = (id) => {
   router.push(`/track/${id}`);
 }
 
+const like = () => {
+  TrackStore.likeTrack(track.value.id)
+}
+
+const countAllComments = (comments) => {
+  return comments.reduce((sum, comment) => {
+    const repliesCount = comment.replies?.length ? countAllComments(comment.replies) : 0
+    return sum + 1 + repliesCount
+  }, 0)
+}
 </script>
 
 

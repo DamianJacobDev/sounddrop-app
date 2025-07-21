@@ -7,8 +7,9 @@
     <p>
       {{ title }}
     </p>
-    <p class="mb-4">
-      {{ views }} views
+    <p class="mb-4 flex items-center">
+      <play-icon class="w-4 h-4 stroke-[1px]" />
+      {{ plays }} plays
     </p>
     <action-button>Follow</action-button>
   </div>
@@ -16,11 +17,12 @@
 
 <script setup>
 import ActionButton from "./ActionButton.vue";
+import { PlayIcon } from "@heroicons/vue/24/outline";
 
 defineProps({
   name: String,
   title: String,
   avatar: String,
-  views: [String, Number]
+  plays: [String, Number]
 });
 </script>

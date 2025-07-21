@@ -14,14 +14,14 @@
         </p>
 
         <div class="flex items-center gap-4 mt-2 text-xs text-secondary">
-          <button class="hover:underline">❤️</button>
-          <button class="hover:underline">Odpowiedz</button>
+          <button>❤️ {{ comment.likes }}</button>
+          <button>Odpowiedz</button>
         </div>
       </div>
     </div>
 
     <div v-if="comment.replies?.length" class="pl-12">
-      <CommentItem :comments="comment.replies"/>
+      <CommentItem :comments="comment.replies" />
     </div>
   </div>
 </template>
@@ -31,5 +31,6 @@
 defineProps({
   comments: Array,
 })
+
 
 </script>

@@ -5,7 +5,7 @@
 .heroicon {
     @apply w-6 h-6 
 }
-.globbalPadding {
+.globalPadding {
     @apply px-4
 }
 body {
