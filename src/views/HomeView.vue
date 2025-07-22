@@ -2,12 +2,12 @@
   <div>
     <h2 class="font-bold">Recently Added</h2>
     <div class="recentlyAdded">
-      <song-card variant="compact" v-for="track in recentlyAdded" :key="track.id" :trackId="track.id" />
+      <song-card variant="compact" v-for="track in recentlyAdded" :key="track.id" :track="track" />
     </div>
 
     <h2 class="font-bold">Most played</h2>
     <div class="mostPlayed">
-      <song-card variant="compact" v-for="track in mostPlayed" :key="track.id" :trackId="track.id" />
+      <song-card variant="compact" v-for="track in mostPlayed" :key="track.id" :track="track" />
     </div>
   </div>
 </template>

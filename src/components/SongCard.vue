@@ -61,25 +61,19 @@ import {
   PlayCircleIcon
 } from '@heroicons/vue/24/outline';
 import Waveform from "./Waveform.vue";
-import { computed, ref } from "vue";
-import { useTrackStore } from "../stores/trackStore.js";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
 const props = defineProps({
-  trackId: 'String',
+  track: Object,
   variant: {
     type: String,
     default: 'compact',
     validator: (val) => ['compact', 'full'].includes(val),
   }
 })
-const TrackStore = useTrackStore();
-
-const track = computed(() =>
-  TrackStore.tracks.find(t => t.id === props.trackId)
-);
 
 const time = ref('');
 const getTime = (val) => {
@@ -92,9 +86,6 @@ const goToDetails = (id) => {
   router.push(`/track/${id}`);
 }
 
-const like = () => {
-  TrackStore.likeTrack(track.value.id)
-}
 
 const countAllComments = (comments) => {
   return comments.reduce((sum, comment) => {

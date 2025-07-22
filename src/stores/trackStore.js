@@ -4,7 +4,7 @@ import {ref, computed} from 'vue'
 export const useTrackStore = defineStore('track', () => {
     const tracks = ref([
         {
-            id: '1',
+            id: 1,
             title: 'Dreamscape',
             description: 'An ethereal blend of ambient tones and dreamy textures.',
             artist: 'Damian Jacob',
@@ -39,7 +39,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['ambient', 'lofi']
         },
         {
-            id: '2',
+            id: 2,
             title: 'Take me to the moon',
             description: 'A heartfelt ballad with emotional melodies and smooth vocals.',
             artist: 'Luna Vega',
@@ -57,12 +57,28 @@ export const useTrackStore = defineStore('track', () => {
                     text: 'Mega sztos!',
                     date: '2025-07-20T12:00:00',
                     avatar: 'https://i.pravatar.cc/40'
+                },
+                {
+                    id: 2,
+                    user: 'Beyonce',
+                    text: 'You go girl!',
+                    date: '2025-07-20T12:00:00',
+                    avatar: 'https://i.pravatar.cc/40',
+                    replies: [
+                        {
+                            id: 1,
+                            user: 'Luna Vega',
+                            text: 'Thank you so much! <3',
+                            date: '2025-07-20T12:00:00',
+                            avatar: 'https://i.pravatar.cc/40'
+                        },
+                    ]
                 }
             ],
             tags: ['ballad', 'pop', 'vocal harmonies']
         },
         {
-            id: '3',
+            id: 3,
             title: 'Neon Skyline',
             description: 'Retro synths and pulsating beats for a late-night drive.',
             artist: 'ECHO',
@@ -77,7 +93,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['synthwave', 'retrowave']
         },
         {
-            id: '4',
+            id: 4,
             title: 'Fragments',
             description: 'Emotive piano and cinematic strings collide in this piece.',
             artist: 'Celeste Nova',
@@ -92,7 +108,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['cinematic', 'instrumental']
         },
         {
-            id: '5',
+            id: 5,
             title: 'Glow',
             description: 'A chill vibe with soft pads and gentle vocal layers.',
             artist: 'Amelia Rae',
@@ -107,7 +123,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['lofi', 'chill']
         },
         {
-            id: '6',
+            id: 6,
             title: 'Gravity',
             description: 'Dark basslines meet hypnotic rhythms in this track.',
             artist: 'Orion Drift',
@@ -122,7 +138,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['electronic', 'dark']
         },
         {
-            id: '7',
+            id: 7,
             title: 'Morning Dew',
             description: 'Peaceful melodies perfect for slow mornings and reflection.',
             artist: 'Zara Flux',
@@ -137,7 +153,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['acoustic', 'calm']
         },
         {
-            id: '8',
+            id: 8,
             title: 'Pulse',
             description: 'High-energy beat with modern electronic grooves.',
             artist: 'Noir & Jade',
@@ -152,7 +168,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['edm', 'club']
         },
         {
-            id: '9',
+            id: 9,
             title: 'Solitude',
             description: 'A haunting soundscape exploring themes of loneliness.',
             artist: 'Velvet Echoes',
@@ -167,7 +183,7 @@ export const useTrackStore = defineStore('track', () => {
             tags: ['ambient', 'dark']
         },
         {
-            id: '10',
+            id: 10,
             title: 'Sunlight',
             description: 'Bright chords and uplifting progressions to start your day.',
             artist: 'Chloe',
