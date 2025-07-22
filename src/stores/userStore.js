@@ -26,7 +26,7 @@ export const useUserStore = defineStore('user', () => {
                 artist: 'Damian Jacob',
                 role: 'Singer/Songwriter',
                 link: '/audio/demo.mp3',
-                cover: 'link to cover',
+                cover: 'https://images.unsplash.com/photo-1629058546203-f38da6cfff04?q=80&w=980&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 createdAt: '2025-07-20T10:00:00',
                 playCount: 10,
                 likes: 5,
@@ -61,7 +61,7 @@ export const useUserStore = defineStore('user', () => {
                 artist: 'Damian Jacob',
                 role: 'Singer/Songwriter',
                 link: '/audio/demo.mp3',
-                cover: 'link to cover',
+                cover: 'https://images.unsplash.com/photo-1698202711230-9cbff0d5151f?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 createdAt: '2025-07-20T10:00:00',
                 playCount: 10,
                 likes: 5,
@@ -72,7 +72,20 @@ export const useUserStore = defineStore('user', () => {
             
         ]
     })
-    const subscribed = ref([])
+    const subscribed = ref([
+        {id: 1,
+        name: 'Losia',
+            role: 'Singer/Songwriter',
+            plays: 1277,
+            avatar: 'https://img.freepik.com/darmowe-wektory/czerwona-kobieta-z-warkoczami_1308-179342.jpg?t=st=1753203038~exp=1753206638~hmac=439816287ab7020cdb24cb59d8a60e53a67694ab4356535464c1b5b4dac366e7&w=1800'
+        },
+        {id: 2,
+            name: 'John Snow',
+            role: 'Singer/Songwriter',
+            plays: 4024,
+            avatar: 'https://img.freepik.com/darmowe-wektory/usmiechniety-mlody-czlowiek-w-okularach_1308-174373.jpg?t=st=1753203451~exp=1753207051~hmac=e238020e80a26b87c1e24a3eab3abe1498a984b8618d34b0518d136844ebf4a8&w=1800'
+        },
+    ])
 
     const toggleLike = (track) => {
   const index = playlists.liked.findIndex(t => t.id === track.id)

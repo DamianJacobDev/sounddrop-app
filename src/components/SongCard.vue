@@ -1,17 +1,17 @@
 <template>
-  <div v-if="track" @click="goToDetails(track.id)">
+  <div v-if="track" @click="goToDetails(track.id)" class="">
     <div v-if="variant === 'compact'"
-      class="flex items-center justify-between px-4 py-4 rounded-xl border my-2 cursor-pointer">
+      class="flex items-center justify-between cursor-pointer">
       <div class="flex items-center gap-2">
-        <span class="bg-primary w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
-          <PlayCircleIcon
+        <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
+          <PlayCircleIcon @click.stop="trackStore.playTrack(track)"
             class="heroicon opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer" />
         </span>
         <span>{{ track.title }}</span>
         <span class="artist relative pl-4 text-sm">{{ track.artist }}</span>
         <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link" />
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5 text-xs">
         <span>{{ time }}</span>
         <HeartIcon class="heroicon" @click.stop="like()" />
         <span>{{ track.likes }}</span>
@@ -21,12 +21,12 @@
       </div>
     </div>
 
-    <div v-else class="px-4 py-4 rounded-xl border my-2 cursor-pointer flex gap-2">
-      <span class="bg-primary w-48 h-48 flex-shrink-0 rounded-sm"></span>
+    <div v-else-if="variant === 'full'" class="cursor-pointer flex gap-2">
+      <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-48 h-48 flex-shrink-0 rounded-sm"></span>
       <div class="w-full">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <PlayCircleIcon class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
+            <PlayCircleIcon @click.stop="trackStore.playTrack(track)" class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
         transition-all duration-300 text-gray-200 cursor-pointer" />
             <div>
               <span class="block text-gray-400">{{ track.artist }}</span>
@@ -50,6 +50,17 @@
         </div>
       </div>
     </div>
+
+    <div v-else-if="variant === 'mini'" class="w-fit cursor-pointer">
+      <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-48 h-48 rounded-sm block"></span>
+            <div>
+              <div class="text-gray-400">{{ track.artist }}</div>
+              <div class="font-bold">{{ track.title }}</div>
+            </div>
+    </div>
+
+
+
   </div>
 </template>
 
@@ -63,6 +74,9 @@ import {
 import Waveform from "./Waveform.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import {useTrackStore} from "../stores/trackStore.js";
+
+const trackStore = useTrackStore();
 
 const router = useRouter();
 
@@ -71,7 +85,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'compact',
-    validator: (val) => ['compact', 'full'].includes(val),
+    validator: (val) => ['compact', 'full', 'mini'].includes(val),
   }
 })
 

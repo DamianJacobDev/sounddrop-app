@@ -2,7 +2,6 @@
 
   <div v-if="track">
     <song-card variant="full" :track="track" />
-    <pre class="text-xs bg-gray-100 p-2 rounded mt-4">{{ track }}</pre>
 
     <div class="flex gap-4 rounded-xl border p-4">
       <artist-card class="w-[15%] h-fit" :name="track.artist" :title="track.role" :plays="track.playCount" />

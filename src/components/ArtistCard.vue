@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center rounded-xl p-4 shadow-md dark:bg-gray-900">
-    <div class="mb-3 h-20 w-20 rounded-full bg-primary"></div>
+    <div :style="`background-image: url('${avatar}')`" class="mb-3 h-20 w-20 rounded-full bg-cover"></div>
     <h3 class="text-xl font-semibold dark:text-white">
       {{ name }}
     </h3>
@@ -20,6 +20,7 @@ import ActionButton from "./ActionButton.vue";
 import { PlayIcon } from "@heroicons/vue/24/outline";
 
 defineProps({
+  id: Number,
   name: String,
   title: String,
   avatar: String,

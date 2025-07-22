@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .heroicon {
-    @apply w-6 h-6;
+    @apply w-4 h-4;
     &--small {
         @apply w-4 h-4;
     }
@@ -12,5 +12,5 @@
     @apply px-4
 }
 body {
-    @apply text-main
+    @apply text-main bg-gray-100
 }

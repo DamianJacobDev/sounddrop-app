@@ -32,16 +32,16 @@
 
     <!-- Tab Content -->
     <div v-if="activeTab === 'Utwory'" v-for="track in userStore.playlists.tracks" :key="track.id">
-      <pre>{{ track.title }}</pre>
-      <SongCard :track="track" />
+      <SongCard class="mt-2" :track="track" />
     </div>
 
     <div v-else-if="activeTab === 'Polubione'">
       <SongCard />
     </div>
 
-    <div v-else-if="activeTab === 'Obserwowani'" class="flex items-center gap-4">
-      <artist-card />
+    <div v-else-if="activeTab === 'Obserwowani'" class="inline-flex mr-2"
+    v-for="person in userStore.subscribed" :key="person.id">
+      <artist-card class="flex-shrink-0" :name="person.name" :title="person.role" :avatar="person.avatar" :plays="person.plays"  />
     </div>
   </div>
 </template>
