@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center rounded-xl p-4 shadow-md dark:bg-gray-900 bg-white text-sm">
+  <div class="flex flex-col items-center text-center rounded-xl p-4 shadow-md dark:bg-gray-900 bg-white text-sm">
     <div :style="`background-image: url('${avatar}')`" class="mb-3 h-20 w-20 rounded-full bg-cover"></div>
     <h3 class="text-xl font-medium dark:text-white">
       {{ name }}

@@ -42,7 +42,7 @@
           </div>
 
         </div>
-        <Waveform @duration="getTime" :key="track.id" :link="track.link" />
+        <Waveform @duration="trackStore.getTime" :key="track.id" :link="track.link" />
         <div class="flex items-center gap-2 justify-end pt-2">
           <span>{{ trackStore.time }}</span>
           <HeartIcon class="heroicon--small" @click.stop="like()" />

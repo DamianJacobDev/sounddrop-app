@@ -208,18 +208,6 @@ export const useTrackStore = defineStore('track', () => {
         [...tracks.value].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 4)
     )
 
-    const addTrack = (trackData) => {
-        const id = Date.now().toString()
-        tracks.value.push({
-            ...trackData,
-            id,
-            playCount: 0,
-            likes: 0,
-            comments: [],
-            createdAt: new Date().toISOString()
-        })
-    }
-
     const incrementPlay = (trackId) => {
         const track = tracks.value.find(t => t.id === trackId)
         if (track) track.playCount++
@@ -277,7 +265,6 @@ export const useTrackStore = defineStore('track', () => {
         time,
         getTime,
         playTrack,
-        addTrack,
         incrementPlay,
         addComment,
         removeComment,

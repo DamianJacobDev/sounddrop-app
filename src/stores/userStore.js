@@ -78,7 +78,7 @@ export const useUserStore = defineStore('user', () => {
         name: 'Losia',
             role: 'Singer/Songwriter',
             plays: 1277,
-            avatar: 'https://img.freepik.com/darmowe-wektory/czerwona-kobieta-z-warkoczami_1308-179342.jpg?t=st=1753203038~exp=1753206638~hmac=439816287ab7020cdb24cb59d8a60e53a67694ab4356535464c1b5b4dac366e7&w=1800'
+            avatar: 'https://img.freepik.com/free-vector/smiling-woman-with-long-hair_1308-176145.jpg?t=st=1753301563~exp=1753305163~hmac=198e7c0f80c3bad00e5af05d9e8f5ee02489092e94c62253df7d378eeda3f0de&w=1800'
         },
         {id: 2,
             name: 'John Snow',
@@ -102,12 +102,28 @@ const findTrackById = (id) => {
          playlists.value.liked.find(t => t.id === id) || null;
 }
 
+    const addTrack = (trackData) => {
+        const id = Date.now()
+
+        playlists.value.tracks.push({
+            ...trackData,
+            ...userData.value,
+            id,
+            playCount: 0,
+            likes: 0,
+            comments: [],
+            createdAt: new Date().toISOString()
+        })
+        console.log('user data:', userData.value)
+    }
+
     return {
         userData,
         likedTracks,
         playlists,
         subscribed,
         toggleLike,
-        findTrackById
+        findTrackById,
+        addTrack,
     }
 })
