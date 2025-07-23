@@ -42,7 +42,7 @@
 
     <div v-else-if="activeTab === 'Obserwowani'" class="inline-flex mr-2" v-for="person in userStore.subscribed"
       :key="person.id">
-      <artist-card class="flex-shrink-0" :name="person.name" :title="person.role" :avatar="person.avatar"
+      <artist-card class="flex-shrink-0 w-44" :name="person.name" :title="person.role" :avatar="person.avatar"
         :plays="person.plays" />
     </div>
   </div>

@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import WaveSurfer from 'wavesurfer.js'
 
 const props = defineProps({
@@ -24,7 +24,7 @@ function formatTime(seconds) {
   return `${mins}:${secs}`
 }
 
-onMounted( () => {
+onMounted(() => {
   wavesurfer = WaveSurfer.create({
     container: waveform.value,
     waveColor: '#E7D2CC',

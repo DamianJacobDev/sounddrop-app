@@ -3,7 +3,7 @@
     <div class="text-2xl font-bold tracking-tight">SoundDrop</div>
     <nav class="flex items-center gap-4">
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/">Upload</RouterLink>
+      <RouterLink to="/upload">Upload</RouterLink>
       <RouterLink to="/user">
         <action-button>
           Log in

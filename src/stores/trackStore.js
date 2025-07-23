@@ -258,14 +258,24 @@ export const useTrackStore = defineStore('track', () => {
 
     const currentTrack = ref(null)
     const playTrack = (track) => {
-        console.log('playTrack called with:', track);
         currentTrack.value = track;
     }
+    
+
+    const time = ref('');
+    const getTime = (val) => {
+    const mins = Math.floor(val / 60)
+    const secs = Math.floor(val % 60).toString().padStart(2, '0')
+    time.value = `${mins}:${secs}`
+    }
+
     return {
         tracks,
         getMostPlayed,
         getRecentlyAdded,
         currentTrack,
+        time,
+        getTime,
         playTrack,
         addTrack,
         incrementPlay,

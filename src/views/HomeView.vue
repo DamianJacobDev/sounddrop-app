@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="space-y-4">
     <h2 class="font-bold">Recently Added</h2>
     <div class="recentlyAdded lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-2 max-lg:space-y-2">
       <song-card variant="compact" v-for="track in recentlyAdded" :key="track.id" :track="track" />

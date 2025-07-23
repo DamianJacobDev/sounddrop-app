@@ -14,11 +14,12 @@
       <chevron-right-icon class="w-10 rounded-full bg-white/50 p-2" />
     </div>
 
-    <div class="bg-blue-500 w-[50%]">
-      <p>Progress bar</p>
+    <div class="w-[50%]">
+      <Waveform @duration="trackStore.getTime" :link="track.link" />
     </div>
 
     <div class="flex items-center gap-2">
+      <span class="pr-4">{{ trackStore.time }}</span>
       <heart-icon class="heroicon--big" />
       <arrow-path-icon class="heroicon--big" />
       <share-icon class="heroicon--big" />
@@ -34,6 +35,7 @@
 import { useTrackStore } from "../stores/trackStore.js";
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue'
+import Waveform from "./Waveform.vue";
 
 import { ChevronLeftIcon, ChevronRightIcon, PlayIcon, HeartIcon, SpeakerWaveIcon, SpeakerXMarkIcon, ShareIcon, ArrowPathIcon } from "@heroicons/vue/24/outline";
 

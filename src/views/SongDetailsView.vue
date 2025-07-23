@@ -9,9 +9,9 @@
       <div class="flex-1">
         <p class="text-sm">{{ track.description }}</p>
         <h3 class="pt-4 font-bold">Comments:</h3>
-        <div class="border px-2 py-1 rounded-lg w-full relative mb-2">
-          <input class="w-full text-sm focus:outline-none" placeholder="Dodaj komentarz..." v-model="comment"
-            @keyup.enter="addComment" />
+        <div class="border border-primary px-2 py-1 rounded-lg w-full relative mb-2">
+          <input class="w-full text-sm bg-transparent focus:outline-none" placeholder="Dodaj komentarz..."
+            v-model="comment" @keyup.enter="addComment" />
           <button class="absolute top-1/2 -translate-y-1/2 bg-primary rounded-lg px-5 py-1.5 right-0 text-sm"
             @click="addComment">Dodaj</button>
         </div>

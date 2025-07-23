@@ -11,10 +11,10 @@
           <p class="font-semibold">{{ track.title }}</p>
           <p class="artist relative sm:pl-4 text-sm font-light">{{ track.artist }}</p>
         </div>
-        <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link" />
+        <Waveform class="hidden" @duration="trackStore.getTime" :key="track.id" :link="track.link" />
       </div>
       <div class="flex items-center gap-1.5 text-xs">
-        <span>{{ time }}</span>
+        <span>{{ trackStore.time }}</span>
         <HeartIcon class="heroicon--small" @click.stop="like()" />
         <span>{{ track.likes }}</span>
         <ChatBubbleOvalLeftEllipsisIcon class="heroicon--small" />
@@ -44,7 +44,7 @@
         </div>
         <Waveform @duration="getTime" :key="track.id" :link="track.link" />
         <div class="flex items-center gap-2 justify-end pt-2">
-          <span>{{ time }}</span>
+          <span>{{ trackStore.time }}</span>
           <HeartIcon class="heroicon--small" @click.stop="like()" />
           <span>{{ track.likes }}</span>
           <ChatBubbleOvalLeftEllipsisIcon class="heroicon--small" />
@@ -93,12 +93,6 @@ const props = defineProps({
   }
 })
 
-const time = ref('');
-const getTime = (val) => {
-  const mins = Math.floor(val / 60)
-  const secs = Math.floor(val % 60).toString().padStart(2, '0')
-  time.value = `${mins}:${secs}`
-}
 
 const goToDetails = (id) => {
   router.push(`/track/${id}`);
@@ -111,6 +105,7 @@ const countAllComments = (comments) => {
     return sum + 1 + repliesCount
   }, 0)
 }
+
 </script>
 
 
