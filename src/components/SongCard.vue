@@ -1,28 +1,31 @@
 <template>
   <div v-if="track" @click="goToDetails(track.id)" class="">
-    <div v-if="variant === 'compact'"
-      class="flex items-center justify-between cursor-pointer">
+    <div v-if="variant === 'compact'" class="flex items-center justify-between cursor-pointer">
       <div class="flex items-center gap-2">
-        <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
+        <span :style="`background-image: url('${track.cover}')`"
+          class="bg-cover bg-no-repeat w-12 h-12 inline-flex items-center justify-center rounded-sm group ">
           <PlayCircleIcon @click.stop="trackStore.playTrack(track)"
-            class="heroicon opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer" />
+            class="heroicon--big opacity-0 group-hover:scale-[1.8] hover:opacity-100 transition-all duration-300 text-gray-200 cursor-pointer" />
         </span>
-        <span>{{ track.title }}</span>
-        <span class="artist relative pl-4 text-sm">{{ track.artist }}</span>
+        <div class="sm:flex items-center gap-2">
+          <p class="font-semibold">{{ track.title }}</p>
+          <p class="artist relative sm:pl-4 text-sm font-light">{{ track.artist }}</p>
+        </div>
         <Waveform class="hidden" @duration="getTime" :key="track.id" :link="track.link" />
       </div>
       <div class="flex items-center gap-1.5 text-xs">
         <span>{{ time }}</span>
-        <HeartIcon class="heroicon" @click.stop="like()" />
+        <HeartIcon class="heroicon--small" @click.stop="like()" />
         <span>{{ track.likes }}</span>
-        <ChatBubbleOvalLeftEllipsisIcon class="heroicon" />
+        <ChatBubbleOvalLeftEllipsisIcon class="heroicon--small" />
         <span>{{ countAllComments(track.comments) }}</span>
-        <EllipsisHorizontalIcon class="heroicon" />
+        <EllipsisHorizontalIcon class="heroicon--small" />
       </div>
     </div>
 
     <div v-else-if="variant === 'full'" class="cursor-pointer flex gap-2">
-      <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-48 h-48 flex-shrink-0 rounded-sm"></span>
+      <span :style="`background-image: url('${track.cover}')`"
+        class="bg-cover bg-no-repeat w-48 h-48 flex-shrink-0 rounded-sm"></span>
       <div class="w-full">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
@@ -42,21 +45,22 @@
         <Waveform @duration="getTime" :key="track.id" :link="track.link" />
         <div class="flex items-center gap-2 justify-end pt-2">
           <span>{{ time }}</span>
-          <HeartIcon class="heroicon" @click.stop="like()" />
+          <HeartIcon class="heroicon--small" @click.stop="like()" />
           <span>{{ track.likes }}</span>
-          <ChatBubbleOvalLeftEllipsisIcon class="heroicon" />
+          <ChatBubbleOvalLeftEllipsisIcon class="heroicon--small" />
           <span>{{ countAllComments(track.comments) }}</span>
-          <EllipsisHorizontalIcon class="heroicon" />
+          <EllipsisHorizontalIcon class="heroicon--small" />
         </div>
       </div>
     </div>
 
     <div v-else-if="variant === 'mini'" class="w-fit cursor-pointer">
-      <span :style="`background-image: url('${track.cover}')` " class="bg-cover bg-no-repeat w-48 h-48 rounded-sm block"></span>
-            <div>
-              <div class="text-gray-400">{{ track.artist }}</div>
-              <div class="font-bold">{{ track.title }}</div>
-            </div>
+      <span :style="`background-image: url('${track.cover}')`"
+        class="bg-cover bg-no-repeat w-48 h-48 rounded-sm block"></span>
+      <div>
+        <div class="text-gray-400">{{ track.artist }}</div>
+        <div class="font-bold">{{ track.title }}</div>
+      </div>
     </div>
 
 
@@ -74,7 +78,7 @@ import {
 import Waveform from "./Waveform.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import {useTrackStore} from "../stores/trackStore.js";
+import { useTrackStore } from "../stores/trackStore.js";
 
 const trackStore = useTrackStore();
 
@@ -112,6 +116,6 @@ const countAllComments = (comments) => {
 
 <style scoped>
 .artist::before {
-  @apply content-[''] absolute w-1.5 h-1.5 rounded-full bg-main top-1/2 -translate-y-1/2 -translate-x-4
+  @apply sm:content-[''] absolute w-1.5 h-1.5 rounded-full bg-main top-1/2 -translate-y-1/2 -translate-x-4
 }
 </style>

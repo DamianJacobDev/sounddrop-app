@@ -201,7 +201,7 @@ export const useTrackStore = defineStore('track', () => {
 
 
     const getMostPlayed = computed(() =>
-        [...tracks.value].sort((a, b) => b.playCount - a.playCount).slice(0, 4)
+        [...tracks.value].sort((a, b) => b.playCount - a.playCount).slice(0, 10)
     )
 
     const getRecentlyAdded = computed(() =>

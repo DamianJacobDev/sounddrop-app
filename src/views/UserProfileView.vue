@@ -1,11 +1,11 @@
 <template>
   <div class="mx-auto">
     <!-- Header -->
-    <div class="mb-6 flex items-center gap-4">
+    <div class="mb-4 flex gap-4">
       <img :src="userStore.userData.avatar" alt="avatar" class="h-20 w-20 rounded-full object-cover bg-primary" />
       <div>
         <h2 class="text-2xl font-bold">{{ userStore.userData.name }}</h2>
-        <p>{{ userStore.userData.bio }}</p>
+        <p>{{ userStore.userData.role }}</p>
         <div class="flex items-center gap-2 text-sm">
           <div class="flex items-center gap-1">
             <user-group-icon class="heroicon--small" />
@@ -16,8 +16,9 @@
             <p>{{ userStore.userData.playCount }}</p>
           </div>
         </div>
+        <p class="py-2">{{ userStore.userData.bio }}</p>
       </div>
-      <div v-if="isCurrentUser" class="ml-auto">
+      <div v-if="isCurrentUser" class="ml-auto flex-shrink-0">
         <action-button>Edytuj profil</action-button>
       </div>
     </div>
@@ -39,9 +40,10 @@
       <SongCard />
     </div>
 
-    <div v-else-if="activeTab === 'Obserwowani'" class="inline-flex mr-2"
-    v-for="person in userStore.subscribed" :key="person.id">
-      <artist-card class="flex-shrink-0" :name="person.name" :title="person.role" :avatar="person.avatar" :plays="person.plays"  />
+    <div v-else-if="activeTab === 'Obserwowani'" class="inline-flex mr-2" v-for="person in userStore.subscribed"
+      :key="person.id">
+      <artist-card class="flex-shrink-0" :name="person.name" :title="person.role" :avatar="person.avatar"
+        :plays="person.plays" />
     </div>
   </div>
 </template>

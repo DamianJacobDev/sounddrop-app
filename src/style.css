@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 .heroicon {
-    @apply w-4 h-4;
+    &--huge {
+    @apply w-8 h-8;
+    }
+    &--big {
+        @apply w-6 h-6
+    }
     &--small {
         @apply w-4 h-4;
     }

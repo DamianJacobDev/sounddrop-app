@@ -8,7 +8,7 @@
       {{ title }}
     </p>
     <p class="mb-4 flex items-center">
-      <play-icon class="w-4 h-4 stroke-[1px]" />
+      <play-icon class="heroicon--small stroke-[1px]" />
       {{ plays }} plays
     </p>
     <action-button>Follow</action-button>
