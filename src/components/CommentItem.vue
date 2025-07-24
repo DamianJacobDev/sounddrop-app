@@ -14,11 +14,12 @@
 
         <div class="flex items-center gap-4 mt-2 text-xs text-secondary">
           <button>❤️ {{ comment.likes }}</button>
-          <button>Odpowiedz</button>
+          <button @click="showReply(comment.id)">Odpowiedz</button>
           <button @click="trackStore.removeComment(trackId, comment.id)" class="text-xs text-red-600 hover:underline">
             <trash-icon class="heroicon--small" />
           </button>
         </div>
+        <input v-if="replyId === comment.id" placeholder="Dodaj odpowiedź" type="text" v-model="replyMsg"/>
       </div>
     </div>
 
@@ -32,11 +33,20 @@
 import { useTrackStore } from "../stores/trackStore.js";
 const trackStore = useTrackStore();
 import { TrashIcon } from "@heroicons/vue/24/outline/index.js";
+import {ref} from "vue";
 
 defineProps({
   comments: Array,
   trackId: [String, Number]
 })
+
+const replyId = ref(null);
+const showReply = (val) => {
+  replyId.value = replyId.value === val ? null : val
+
+}
+
+const replyMsg = ref('');
 
 
 </script>

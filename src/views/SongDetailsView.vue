@@ -4,7 +4,7 @@
     <song-card variant="full" :track="track" />
 
     <div class="md:flex gap-4 my-4">
-      <artist-card class="w-48 h-fit" :name="track.artist || user.userData.name"
+      <artist-card @follow="saveFollow" class="w-48 h-fit" :name="track.artist || user.userData.name"
         :title="track.role || user.userData.role"
         :plays="track.artist === 'Damian Jacob' ? user.userData.playCount : track.playCount"
         :avatar="track.artist === 'Damian Jacob' ? user.userData.avatar : `https://i.pravatar.cc/40?u=${track.artist}`" />
@@ -66,6 +66,22 @@ const addComment = () => {
   store.addComment(trackId, newComment);
   comment.value = "";
 }
+const saveFollow = (val) => {
+  console.log('działa', val)
+
+  const newFollow = {
+    id: Date.now(),
+    name: track.value.artist,
+    role: track.value.role,
+    plays: track.value.playCount,
+    avatar: `https://i.pravatar.cc/40?u=${track.value.artist}`,
+  }
+
+  if (val === true) {
+    user.subscribed.push(newFollow)
+  }
+}
+
 
 </script>
 

@@ -17,7 +17,7 @@ export const useTrackStore = defineStore('track', () => {
             likedBy: [],
             comments: [
                 {
-                    id: 1,
+                    id: Date.now(),
                     user: 'Ola',
                     text: 'Super vibe!',
                     date: '2025-07-20T12:00:00',
@@ -25,7 +25,7 @@ export const useTrackStore = defineStore('track', () => {
                     likes: '6',
                     replies: [
                         {
-                            id: 1,
+                            id: Date.now(),
                             user: 'John Smith',
                             text: 'Yes, this is amazing!',
                             date: '2025-07-20T12:00:00',
@@ -66,7 +66,7 @@ export const useTrackStore = defineStore('track', () => {
                     avatar: 'https://i.pravatar.cc/40',
                     replies: [
                         {
-                            id: 1,
+                            id: 3,
                             user: 'Luna Vega',
                             text: 'Thank you so much! <3',
                             date: '2025-07-20T12:00:00',

@@ -30,8 +30,10 @@ defineProps({
 });
 
 const followed = ref(false)
+const emit = defineEmits(['follow'])
 
 const toggleFollow = () => {
-  followed.value = !followed.value
+  followed.value = !followed.value;
+  emit('follow', followed.value);
 }
 </script>

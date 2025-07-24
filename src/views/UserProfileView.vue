@@ -63,4 +63,5 @@ const tabs = ['Utwory', 'Polubione', 'Obserwowani']
 const activeTab = ref('Utwory')
 
 const isCurrentUser = computed(() => userStore.userData.id)
+
 </script>
