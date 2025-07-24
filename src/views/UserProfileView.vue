@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-auto">
+  <div class="mx-auto relative">
     <!-- Header -->
-    <div class="mb-4 flex gap-4">
+    <div class="mb-4 md:flex gap-4">
       <img :src="userStore.userData.avatar" alt="avatar" class="h-20 w-20 rounded-full object-cover bg-primary" />
       <div>
         <h2 class="text-2xl font-bold">{{ userStore.userData.name }}</h2>
@@ -18,7 +18,7 @@
         </div>
         <p class="py-2">{{ userStore.userData.bio }}</p>
       </div>
-      <div v-if="isCurrentUser" class="ml-auto flex-shrink-0">
+      <div v-if="isCurrentUser" class="ml-auto flex-shrink-0 max-md:absolute top-0 right-0">
         <action-button>Edytuj profil</action-button>
       </div>
     </div>

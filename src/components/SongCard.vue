@@ -23,11 +23,11 @@
       </div>
     </div>
 
-    <div v-else-if="variant === 'full'" class="cursor-pointer flex gap-2">
+    <div v-else-if="variant === 'full'" class="cursor-pointer md:flex gap-2 relative">
       <span :style="`background-image: url('${track.cover}')`"
-        class="bg-cover bg-no-repeat w-48 h-48 flex-shrink-0 rounded-sm"></span>
+        class="bg-cover bg-no-repeat bg-center w-full h-64 md:w-48 md:h-48 flex-shrink-0 rounded-sm max-md:block"></span>
       <div class="w-full">
-        <div class="flex items-center justify-between">
+        <div class="md:flex items-center justify-between">
           <div class="flex items-center gap-2">
             <PlayCircleIcon @click.stop="trackStore.playTrack(track)" class="w-16 h-16 stroke-[0.03rem] group-hover:scale-[1.8] hover:opacity-100
         transition-all duration-300 text-gray-200 cursor-pointer" />
@@ -36,7 +36,7 @@
               <span class="block font-bold">{{ track.title }}</span>
             </div>
           </div>
-          <div class="flex items-center gap-2 flex-wrap max-w-xl">
+          <div class="flex items-center gap-2 flex-wrap max-w-xl max-md:absolute top-4 right-4">
             <span v-for="(tag, index) in track.tags" :key="index" class="bg-primary px-2 py-0.5 rounded-lg text-sm">#{{
               tag }}</span>
           </div>

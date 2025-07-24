@@ -16,7 +16,7 @@
           <button>❤️ {{ comment.likes }}</button>
           <button>Odpowiedz</button>
           <button @click="trackStore.removeComment(trackId, comment.id)" class="text-xs text-red-600 hover:underline">
-            <trash-icon class="heroicon--small"/>
+            <trash-icon class="heroicon--small" />
           </button>
         </div>
       </div>
@@ -29,9 +29,9 @@
 </template>
 
 <script setup>
-import {useTrackStore} from "../stores/trackStore.js";
+import { useTrackStore } from "../stores/trackStore.js";
 const trackStore = useTrackStore();
-import {TrashIcon} from "@heroicons/vue/24/outline/index.js";
+import { TrashIcon } from "@heroicons/vue/24/outline/index.js";
 
 defineProps({
   comments: Array,

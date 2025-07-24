@@ -3,12 +3,11 @@
   <div v-if="track">
     <song-card variant="full" :track="track" />
 
-    <div class="flex gap-4 my-4">
-      <artist-card class="w-[15%] h-fit"
-                   :name="track.artist || user.userData.name"
-                   :title="track.role || user.userData.role"
-                   :plays="track.artist === 'Damian Jacob' ? user.userData.playCount : track.playCount"
-                   :avatar="track.artist === 'Damian Jacob' ? user.userData.avatar : `https://i.pravatar.cc/40?u=${track.artist}`"/>
+    <div class="md:flex gap-4 my-4">
+      <artist-card class="w-48 h-fit" :name="track.artist || user.userData.name"
+        :title="track.role || user.userData.role"
+        :plays="track.artist === 'Damian Jacob' ? user.userData.playCount : track.playCount"
+        :avatar="track.artist === 'Damian Jacob' ? user.userData.avatar : `https://i.pravatar.cc/40?u=${track.artist}`" />
 
       <div class="flex-1">
         <p class="text-sm">{{ track.description }}</p>
